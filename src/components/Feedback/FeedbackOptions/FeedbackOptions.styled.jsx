@@ -19,7 +19,6 @@ padding: 15px;
 margin: 10px 20px;
 border-radius: 15px;
 color: yellow;
-// border: 1px solid rgb(230, 228, 223);
 box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6;
 font-family: 'Montserrat', sans-serif;
 font-weight: bold;
