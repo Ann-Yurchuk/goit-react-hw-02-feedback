@@ -1,0 +1,66 @@
+import React, { Component } from 'react';
+import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { NotificationMessage } from './Notification/Notification';
+
+
+class Feedback extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0
+  };
+
+  leaveFeedback = (event)=> {
+   const btn = event.target.name;
+    this.setState(prevDef => ({
+      [btn]: prevDef[btn] + 1
+    }));
+
+  };
+
+  countTotalFeedback = () => {
+  return Math.round(this.state.good + this.state.neutral + this.state.bad);
+  };
+
+  countPositiveFeedbackPercentage = () => {
+  return Math.round((this.state.good * 100) / this.countTotalFeedback());
+  };
+
+    render() {
+      const { good, neutral, bad } = this.state;
+
+      return (
+      
+      <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: 'grey'
+      }} >
+        
+        <Section title={"Please leave feedback"}>
+          <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback = {this.leaveFeedback.bind(this)} />
+        </Section>
+
+        <Section title={"Statistics"}>
+          {this.countTotalFeedback() ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}/>
+          ) : (
+              <NotificationMessage message={"There is no feedback"} />
+          )}
+        </Section>
+
+      </div>
+    );
+  }
+}
+
+export default Feedback;
