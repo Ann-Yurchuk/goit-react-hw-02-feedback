@@ -32,20 +32,11 @@ class Feedback extends Component {
       const { good, neutral, bad } = this.state;
 
       return (
-      
-      <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          color: 'grey'
-      }} >
-        
-        <Section title={"Please leave feedback"}>
-          <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback = {this.leaveFeedback.bind(this)} />
+      <>
+        <Section title="Please leave feedback">
+        <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback = {this.leaveFeedback.bind(this)} />
         </Section>
-
-        <Section title={"Statistics"}>
+        <Section title="Statistics">
           {this.countTotalFeedback() ? (
             <Statistics
               good={good}
@@ -54,11 +45,10 @@ class Feedback extends Component {
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}/>
           ) : (
-              <NotificationMessage message={"There is no feedback"} />
+              <NotificationMessage message="There is no feedback" />
           )}
         </Section>
-
-      </div>
+      </>
     );
   }
 }
