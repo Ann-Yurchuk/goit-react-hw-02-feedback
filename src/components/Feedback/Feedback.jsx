@@ -12,12 +12,10 @@ class Feedback extends Component {
     bad: 0
   };
 
-  leaveFeedback = (event)=> {
-   const btn = event.target.name;
-    this.setState(prevDef => ({
-      [btn]: prevDef[btn] + 1
+  leaveFeedback = (event) => {
+    this.setState(prevState => ({
+      [event]: prevState[event] + 1
     }));
-
   };
 
   countTotalFeedback = () => {
@@ -30,11 +28,11 @@ class Feedback extends Component {
 
     render() {
       const { good, neutral, bad } = this.state;
-
+      
       return (
       <>
         <Section title="Please leave feedback">
-        <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback = {this.leaveFeedback.bind(this)} />
+        <FeedbackOptions options={this.state} onLeaveFeedback={this.leaveFeedback} />
         </Section>
         <Section title="Statistics">
           {this.countTotalFeedback() ? (
