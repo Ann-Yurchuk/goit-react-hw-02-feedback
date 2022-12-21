@@ -32,7 +32,7 @@ class Feedback extends Component {
       return (
       <>
         <Section title="Please leave feedback">
-        <FeedbackOptions options={this.state} onLeaveFeedback={this.leaveFeedback} />
+        <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.leaveFeedback} />
         </Section>
         <Section title="Statistics">
           {this.countTotalFeedback() ? (
